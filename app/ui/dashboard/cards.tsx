@@ -3,8 +3,8 @@ import {
   ClockIcon,
   UserGroupIcon,
   InboxIcon,
-} from '@heroicons/react/24/outline';
-import { lusitana } from '@/app/ui/fonts';
+} from "@heroicons/react/24/outline";
+import { lusitana } from "@/app/ui/fonts";
 
 const iconMap = {
   collected: BanknotesIcon,
@@ -14,6 +14,11 @@ const iconMap = {
 };
 
 export default async function Cards() {
+  const totalPaidInvoices = 0;
+  const totalPendingInvoices = 0;
+  const numberOfInvoices = 0;
+  const numberOfCustomers = 0;
+
   return (
     <>
       <Card title="Collected" value={totalPaidInvoices} type="collected" />
@@ -35,7 +40,7 @@ export function Card({
 }: {
   title: string;
   value: number | string;
-  type: 'invoices' | 'customers' | 'pending' | 'collected';
+  type: "invoices" | "customers" | "pending" | "collected";
 }) {
   const Icon = iconMap[type];
 

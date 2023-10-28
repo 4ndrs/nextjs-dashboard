@@ -1,6 +1,6 @@
-import { generateYAxis } from '@/app/lib/utils';
-import { CalendarIcon } from '@heroicons/react/24/outline';
-import { lusitana } from '@/app/ui/fonts';
+import { generateYAxis } from "@/app/lib/utils";
+import { CalendarIcon } from "@heroicons/react/24/outline";
+import { lusitana } from "@/app/ui/fonts";
 
 // This component is representational only.
 // For data visualization UI, check out:
@@ -9,6 +9,8 @@ import { lusitana } from '@/app/ui/fonts';
 // https://airbnb.io/visx/
 
 export default async function RevenueChart() {
+  const revenue: Parameters<typeof generateYAxis>[number] = [];
+
   const chartHeight = 350;
   const { yAxisLabels, topLabel } = generateYAxis(revenue);
 
