@@ -2,16 +2,14 @@ import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import Image from "next/image";
 import { lusitana } from "@/app/ui/fonts";
-export default async function LatestInvoices() {
-  const latestInvoices = [
-    {
-      id: 1,
-      image_url: "",
-      name: "",
-      email: "",
-      amount: "",
-    },
-  ];
+
+import type { LatestInvoice } from "@/app/lib/definitions";
+
+type Props = {
+  latestInvoices: LatestInvoice[];
+};
+
+export default async function LatestInvoices({ latestInvoices }: Props) {
   return (
     <div className="flex w-full flex-col md:col-span-4 lg:col-span-4">
       <h2 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
