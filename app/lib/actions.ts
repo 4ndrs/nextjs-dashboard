@@ -24,7 +24,7 @@ const CreateInvoice = FormSchema.omit({ id: true, date: true });
 const UpdateInvoice = FormSchema.omit({ date: true });
 const DeleteInvoice = FormSchema.pick({ id: true });
 
-// This is temporary
+// This is temporary until @types/react-dom is updated
 export type State = {
   errors?: {
     customerId?: string[];
@@ -34,7 +34,7 @@ export type State = {
   message?: string | null;
 };
 
-export async function createInvoice(formData: FormData) {
+export async function createInvoice(_previousState: State, formData: FormData) {
   // Validate form fields using Zod
   const validatedFields = CreateInvoice.safeParse({
     customerId: formData.get("customerId"),
@@ -52,8 +52,9 @@ export async function createInvoice(formData: FormData) {
 
   // Prepare data for insertion into the database
   const { customerId, amount, status } = validatedFields.data;
-  const amountInCents = amount * 100;
+
   const date = new Date().toISOString().split("T")[0];
+  const amountInCents = amount * 100;
 
   // Insert data into the database
   try {
@@ -73,7 +74,7 @@ export async function createInvoice(formData: FormData) {
   redirect("/dashboard/invoices");
 }
 
-export async function updateInvoice(formData: FormData) {
+export async function updateInvoice(_previousState: State, formData: FormData) {
   const validatedFields = UpdateInvoice.safeParse({
     id: formData.get("id"),
     customerId: formData.get("customerId"),
