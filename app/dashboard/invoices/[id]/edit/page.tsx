@@ -1,6 +1,7 @@
 import Form from "@/app/ui/invoices/edit-form";
 import Breadcrumbs from "@/app/ui/invoices/breadcrumbs";
 
+import { notFound } from "next/navigation";
 import { fetchCustomers, fetchInvoiceById } from "@/app/lib/data";
 
 type Props = {
@@ -11,6 +12,11 @@ const Page = async ({ params }: Props) => {
   const id = params.id;
 
   const invoice = await fetchInvoiceById(id);
+
+  if (!invoice) {
+    notFound();
+  }
+
   const customers = await fetchCustomers();
 
   return (
